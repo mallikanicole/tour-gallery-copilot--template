@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import Gallery from './components/Gallery';
 import reactLogo from './assets/react.svg';
 import viteLogo from '/vite.svg';
 import './App.css';
@@ -25,9 +26,13 @@ function App() {
         setLoading(false);
       }
     };
-//fetch tours
+
     fetchTours();
   }, []);
+
+  const removeTour = (id) => {
+    setTours((prevTours) => prevTours.filter((tour) => tour.id !== id));
+  };
 
   if (loading) {
     return <h2>Loading...</h2>;
@@ -50,11 +55,7 @@ function App() {
       <h1>Vite + React</h1>
       <div className="card">
         <h2>Tours</h2>
-        <ul>
-          {tours.map((tour) => (
-            <li key={tour.id}>{tour.name}</li>
-          ))}
-        </ul>
+        <Gallery tours={tours} onRemove={removeTour} />
       </div>
       <p className="read-the-docs">
         Click on the Vite and React logos to learn more
