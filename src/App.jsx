@@ -25,7 +25,7 @@ function App() {
         setLoading(false);
       }
     };
-
+//fetch tours
     fetchTours();
   }, []);
 
